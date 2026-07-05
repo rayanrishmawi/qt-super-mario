@@ -1,10 +1,11 @@
-#pragma once
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 
-#include <QGraphicsPixmapItem>
-#include <QKeyEvent>
 #include <QObject>
+#include <QGraphicsRectItem>
+#include <QKeyEvent>
 
-class Player : public QObject, public QGraphicsPixmapItem {
+class Player : public QObject, public QGraphicsRectItem {
   Q_OBJECT
 
  public:
@@ -20,3 +21,5 @@ class Player : public QObject, public QGraphicsPixmapItem {
   int velocityY;
   bool onGround;
 };
+
+#endif
