@@ -1,7 +1,8 @@
 #include "player.hpp"
-
+#include <QMessageBox>
+#include <QGraphicsScene>
 #include <QBrush>
-
+#include <QGraphicsScene>
 Player::Player(QGraphicsItem* parent)
     : QObject(), QGraphicsRectItem(parent), velocityY(0), onGround(false) {
   setRect(0, 0, 30, 60);
@@ -19,7 +20,7 @@ void Player::keyPressEvent(QKeyEvent* event) {
   if (event->key() == Qt::Key_Right) {
     moveBy(10, 0);
   }
-  if (event->key() == Qt::Key_Space && onGround) {
+if (event->key() == Qt::Key_Space && onGround) {
     velocityY = -15;
   }
 }
@@ -37,5 +38,11 @@ void Player::updateState() {
 
     velocityY = 0;
     onGround = true;
+  }
+
+  if (y() > scene()->height()) {
+    QMessageBox::information(nullptr, "Game Over", "You lost!");
+    setPos(100, 100);
+    velocityY = 0;
   }
 }
